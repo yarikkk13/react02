@@ -1,30 +1,47 @@
-import {useState} from "react";
-import Users from "./users/Users";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+import Home from "./components/home/Home";
+import Users from "./components/users/Users";
+import Posts from "./components/posts/Posts";
+import UserDetails from "./components/userDetails/UserDetails";
 
 export default function App() {
-    let [counter, setCounter] = useState(0);
-
-    const increment = () => {
-        setCounter(++counter)
-    }
-    const decrement = () => {
-        setCounter(--counter)
-    }
-    const reset = () => {
-        setCounter(0)
-    }
-
     return (
-        <div>
-            <div><h2>state is - ${counter}</h2>
-                <button onClick={increment}>increment</button>
-                <button onClick={decrement}>decrement</button>
-                <button onClick={reset}>reset</button>
-            </div>
-            <h1></h1>
+        <Router>
             <div>
-                <Users/>
+                {/*making links*/}
+                <Link to={'/'}>home</Link>
+                <br/>
+                <Link to={'/users'}>users</Link>
+                <br/>
+                <Link to={'/posts'}>posts</Link>
+                <br/>
+
+                <Switch>
+                    {/*home page*/}
+                    <Route exact path={'/'}>
+                        <Home/>
+                    </Route>
+                    {/*users page*/}
+                    <Route exact path={'/users'} component={Users}/>
+
+                    {/*замінює повністю юзерс компонент*/}
+                    <Route path={'/users/:id'} component={UserDetails}/>
+
+
+                    {/*posts page */}
+                    {/*<Route path={'/posts'} render={(props) => {*/}
+                    {/*    console.log(props)*/}
+                    {/*    return <Posts/>;*/}
+                    {/*}}/>*/}
+                    {/*<Route path={'/posts'} render={() => <Posts/>}/>*/}
+                    <Route exact path={'/posts'} component={Posts}/>
+                </Switch>
             </div>
-        </div>
+        </Router>
     );
 }
