@@ -2,11 +2,11 @@ import {
     Link
 } from "react-router-dom";
 
-export default function Post(item, url) {
+export default function Post(item) {
     return (
         <div>
-            {item.id} - {item.body}
-            <Link to={url + '/' + item.id}> post details</Link>
+            {item.item.userId} - {item.item.id}
+            <Link to={item.url + '/' + item.item.id}> post details</Link>
         </div>
     );
 }

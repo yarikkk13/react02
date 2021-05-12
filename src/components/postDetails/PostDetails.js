@@ -2,8 +2,8 @@ import {useEffect, useState} from "react";
 
 
 export default function PostDetails(props) {
-
     let {match: {params: {id}}} = props;
+    console.log(props)
     let [post, setPost] = useState(null);
 
     useEffect(() => {
@@ -13,7 +13,6 @@ export default function PostDetails(props) {
                 setPost({...value})
             })
     }, [id, post])
-
     return (
         <div>
             {post && <h2> {post.body} </h2>}
