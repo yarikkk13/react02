@@ -1,30 +1,34 @@
-import {useState} from "react";
-import Users from "./users/Users";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+import Home from "./components/home/Home";
+import Characters from "./components/characters/Characters";
+import Inventory from "./components/inventory/Inventory";
+import ThingDetail from "./components/thingDetail/ThingDetail";
 
 export default function App() {
-    let [counter, setCounter] = useState(0);
-
-    const increment = () => {
-        setCounter(++counter)
-    }
-    const decrement = () => {
-        setCounter(--counter)
-    }
-    const reset = () => {
-        setCounter(0)
-    }
-
     return (
-        <div>
-            <div><h2>state is - ${counter}</h2>
-                <button onClick={increment}>increment</button>
-                <button onClick={decrement}>decrement</button>
-                <button onClick={reset}>reset</button>
-            </div>
-            <h1></h1>
+        <Router>
             <div>
-                <Users/>
+                <Link to={'/'}>home page</Link>
+                <br/>
+                <Link to={'/characters'}>characters</Link>
+                <br/>
+                <Link to={'/inventory'}>inventory</Link>
+                <br/>
+                <Switch>
+                    <Route exact path={'/'}>
+                        <Home/>
+                    </Route>
+                    <Route path={'/characters'} component={Characters}/>
+                    {/*<Route exact path={'/characters'} component={Characters}/>*/}
+                    <Route exact path={'/inventory'} component={Inventory}/>
+                    <Route exact path={'/inventory/:id'} component={ThingDetail}/>
+                </Switch>
             </div>
-        </div>
+        </Router>
     );
 }
