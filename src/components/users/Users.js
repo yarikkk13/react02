@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import User from "../user/User";
-// import {Route, Switch} from "react-router-dom";
 // import UserDetails from "../userDetails/UserDetails";
+// import {Route, Switch} from "react-router-dom";
 //3,4, 27-31
 export default function Users(props) {
     //витягуєм урл

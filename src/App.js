@@ -8,6 +8,7 @@ import Home from "./components/home/Home";
 import Users from "./components/users/Users";
 import Posts from "./components/posts/Posts";
 import UserDetails from "./components/userDetails/UserDetails";
+import PostDetails from "./components/postDetails/PostDetails";
 
 export default function App() {
     return (
@@ -40,6 +41,7 @@ export default function App() {
                     {/*}}/>*/}
                     {/*<Route path={'/posts'} render={() => <Posts/>}/>*/}
                     <Route exact path={'/posts'} component={Posts}/>
+                    <Route path={'/posts/:id'} component={PostDetails}/>
                 </Switch>
             </div>
         </Router>

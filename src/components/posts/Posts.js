@@ -24,7 +24,7 @@ export default function Posts(props) {
             }
 
             <Switch>
-                <Route path={'/posts/:id'} component={PostDetails}/>
+                <Route path={'/posts/1'} component={PostDetails}/>
             </Switch>
         </div>
     );

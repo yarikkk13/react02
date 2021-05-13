@@ -1,9 +1,9 @@
 import {useEffect, useState} from "react";
 
-
 export default function PostDetails(props) {
+
     let {match: {params: {id}}} = props;
-    console.log(props)
+
     let [post, setPost] = useState(null);
 
     useEffect(() => {
@@ -12,10 +12,15 @@ export default function PostDetails(props) {
             .then(value => {
                 setPost({...value})
             })
-    }, [id, post])
+    }, [id,post]);
+
     return (
         <div>
-            {post && <h2> {post.body} </h2>}
+            {post &&
+            <div>
+                <h2> {post.title}</h2>
+                <p>{post.body}</p>
+            </div>}
         </div>
     );
 }
