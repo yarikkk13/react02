@@ -1,30 +1,35 @@
-import {useState} from "react";
-import Users from "./users/Users";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+} from "react-router-dom";
+import Users from "./components/users/Users";
+import Home from "./components/home/Home";
+import Posts from "./components/posts/Posts";
+import UserDetails from "./components/userDetails/UserDetails";
+import PostDetails from "./components/postDetails/PostDetails";
 
 export default function App() {
-    let [counter, setCounter] = useState(0);
-
-    const increment = () => {
-        setCounter(++counter)
-    }
-    const decrement = () => {
-        setCounter(--counter)
-    }
-    const reset = () => {
-        setCounter(0)
-    }
 
     return (
-        <div>
-            <div><h2>state is - ${counter}</h2>
-                <button onClick={increment}>increment</button>
-                <button onClick={decrement}>decrement</button>
-                <button onClick={reset}>reset</button>
-            </div>
-            <h1></h1>
+        <Router>
             <div>
-                <Users/>
+                <Link to={'/'}>home page</Link>
+                <br/>
+                <Link to={'/users'}>users page</Link>
+                <br/>
+                <Link to={'/posts'}>posts page</Link>
+                <br/>
+
+                <Switch>
+                    <Route exact path={'/'} ><Home/></Route>
+                    <Route exact path={'/users'} component={Users}/>
+                    <Route exact path={'/users/:id'} component={UserDetails}/>
+                    <Route exact path={'/posts'} component={Posts}/>
+                    <Route exact path={'/posts/:id'} component={PostDetails}/>
+                </Switch>
             </div>
-        </div>
+        </Router>
     );
 }
